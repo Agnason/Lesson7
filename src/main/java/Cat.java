@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Cat {
     private String name;
     private int appetite;
@@ -11,8 +9,16 @@ public class Cat {
         this.satiety = false;// при создании кота, должен быть всегда голодный
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void info() {
-        System.out.printf("Имя кота = %s, Сытость = %s, Аппетит= %s", name, satiety, appetite);
+        System.out.printf("Имя кота = %s, Сытость = %s", name, satiety);
         System.out.println("");
     }
 
@@ -23,18 +29,22 @@ public class Cat {
     public void eat(Plate p) {
         if (p.isFoodEnough(this)) {
             p.decreaseFood(appetite);
-            infoWhenCatSatiety();
-        } else {
-            p.increaseFood(this);
-            p.decreaseFood(appetite);
-            infoWhenCatSatiety();
+            setSatiety(true);
         }
+        infoWhenCatEat();
     }
 
-    public void infoWhenCatSatiety() {
-        System.out.printf("Кот %s съел %s eды", name, appetite);
-        System.out.println();
-        setSatiety(true);
+    public boolean isSatiety() {
+        return satiety;
+    }
+
+    public void infoWhenCatEat() {
+        if (isSatiety() == true) {
+            System.out.printf("Кот %s съел %s eды", name, appetite);
+            System.out.println();
+        }else {
+            System.out.println("Коту " + name + " не досталось еды");
+        }
     }
 
     public int getAppetite() {

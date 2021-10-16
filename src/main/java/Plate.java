@@ -19,10 +19,11 @@ public class Plate {
 
     public void increaseFood(Cat cat) {
         do {
-            System.out.println("А вот теперь котам еды уже не хватает.Сколько еды добавим?");
+            System.out.println("Надо накормить " + cat.getName() + "." + "Eму нужно еще " + (cat.getAppetite()-getFood())+ " еды");
             Scanner sc = new Scanner(System.in);
             int user = sc.nextInt();
             food += user;
+            info();
         }
         while (!isFoodEnough(cat));
 

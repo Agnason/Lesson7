@@ -12,14 +12,23 @@ public class CatTest {
         cat[3] = new Cat("Чарли", 40);
         cat[4] = new Cat("Боб", 31);
 
-        Plate plate = new Plate(50);
-
+        Plate plate = new Plate(60);
+        plate.info();
         for (int i = 0; i < cat.length; i++) {
-            plate.info();
-            cat[i].info();
             cat[i].eat(plate);
-            cat[i].info();
         }
+        for (int i = 0; i < cat.length; i++) {
+            cat[i].info ();
+        }
+        plate.info();
+
+        for (Cat hungryCat: cat) {
+            if (hungryCat.isSatiety()==false){
+                plate.increaseFood(hungryCat);
+            }
+        }
+
+
     }
 }
 
