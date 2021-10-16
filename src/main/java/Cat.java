@@ -21,11 +21,14 @@ public class Cat {
     }
 
     public void eat(Plate p) {
-        if (!p.isFoodEnough(this)) {
+        if (p.isFoodEnough(this)) {
+            p.decreaseFood(appetite);
+            infoWhenCatSatiety();
+        } else {
             p.increaseFood(this);
+            p.decreaseFood(appetite);
+            infoWhenCatSatiety();
         }
-        p.decreaseFood(appetite);
-        infoWhenCatSatiety();
     }
 
     public void infoWhenCatSatiety() {
