@@ -12,21 +12,28 @@ public class Plate {
     }
 
     public boolean isFoodEnough(Cat cat) {
-        if (food >= cat.getAppetite())
+        if (food >= cat.getAppetite()) {
             return true;
+        }
         return false;
     }
 
-    public void increaseFood(Cat cat) {
+    public void increaseFood() {
+        System.out.println("Давай добавим еды");
+        Scanner sc = new Scanner(System.in);
+        int user = sc.nextInt();
+        food += user;
+        info();
+    }
+   public void eatCatWhoIsSatiety(Cat cat) {
         do {
-            System.out.println("Надо накормить " + cat.getName() + "." + "Eму нужно еще " + (cat.getAppetite()-getFood())+ " еды");
+            System.out.println("Надо накормить " + cat.getName() + "." + "Eму нужно еще " + (Math.max(0,cat.getAppetite()-getFood()) )+ " еды");
             Scanner sc = new Scanner(System.in);
             int user = sc.nextInt();
             food += user;
-            info();
         }
         while (!isFoodEnough(cat));
-
+        cat.eat(this);
     }
 
     public int getFood() {
